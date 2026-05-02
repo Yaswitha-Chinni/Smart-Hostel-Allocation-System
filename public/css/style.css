@@ -14,8 +14,8 @@
 body{background:linear-gradient(135deg,#f0f4ff,#e8effe);color:var(--text);min-height:100vh;}
 
 /* ── BANNER ── */
-.college-banner-wrap{width:100%;height:100px;background:#ffffff;display:flex;justify-content:center;align-items:center;border-bottom:1px solid var(--border);}
-.college-banner-img{max-height:85px;max-width:100%;object-fit:contain;display:block;}
+.college-banner-wrap{width:100%;background:#ffffff;padding:15px 20px;display:flex;justify-content:center;align-items:center;border-bottom:1px solid var(--border);}
+.college-banner-img{width:100%;max-width:600px;height:auto;object-fit:contain;display:block;}
 .banner-overlay{display:none;}
 
 /* ── NAVBAR ── */
@@ -132,7 +132,7 @@ body{background:linear-gradient(135deg,#f0f4ff,#e8effe);color:var(--text);min-he
 @media(max-width:768px){
     .container{padding:1rem;}
     .dashboard-header{flex-direction:column;}
-    .college-banner-wrap{height:70px;}
-    .college-banner-img{max-height:60px;}
+    .college-banner-wrap{height:auto; padding:10px;}
+    .college-banner-img{max-height:none; width:100%;}
     .room-grid{grid-template-columns:1fr;}
 }
