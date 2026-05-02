@@ -147,6 +147,49 @@ app.get('/api/bookings/status', auth, (req, res) => {
     res.json({ booked: true, booking: { ...booking, room_number: room?.room_number, floor: room?.floor, type: room?.type } });
 });
 
+// ── Admin Routes (Mock) ───────────────────────────────────────────
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'admin123';
+
+app.post('/api/admin/login', (req, res) => {
+    const { username, password } = req.body;
+    if (username === ADMIN_USER && password === ADMIN_PASS) {
+        const token = jwt.sign({ role: 'admin' }, JWT_SECRET, { expiresIn: '24h' });
+        return res.json({ success: true, token });
+    }
+    return res.status(401).json({ success: false, message: 'Invalid admin credentials' });
+});
+
+app.get('/api/admin/students', (req, res) => {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+    if (!token) return res.status(401).json({ message: 'No token' });
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        if (decoded.role !== 'admin') return res.status(403).json({ message: 'Not authorized' });
+    } catch { return res.status(401).json({ message: 'Invalid token' }); }
+
+    const result = users.map(u => {
+        const booking = bookings.find(b => b.user_id === u.id);
+        const room = booking ? rooms.find(r => r.room_id === booking.room_id) : null;
+        return {
+            id: u.id,
+            username: u.username,
+            roll_number: u.roll_number,
+            email: u.email,
+            mobile: u.mobile,
+            gender: u.gender,
+            booking_status: booking ? 'Booked' : 'Pending',
+            room_number: room?.room_number || null,
+            floor: room?.floor || null,
+            type: room?.type || null,
+            token_number: booking?.token_number || null
+        };
+    });
+    // Sort by roll number
+    result.sort((a, b) => a.roll_number.localeCompare(b.roll_number));
+    res.json(result);
+});
+
 // ── Fallback ──────────────────────────────────────────────────────
 app.get('/{*path}', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
