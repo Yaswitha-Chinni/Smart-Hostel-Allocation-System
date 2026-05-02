@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - KITSW Hostel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="alert-container"></div>
+
+    <!-- College Banner -->
+    <div class="college-banner-wrap">
+        <img src="https://kitsw.ac.in/images/kits_banner_1.jpg" alt="" class="college-banner-img"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#1e3a8a,#2563eb)';this.style.display='none'">
+        <div class="banner-overlay"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">KITSW Hostel</div>
+        <div class="nav-links">
+            <span id="user-display"></span>
+            <div class="profile-wrap" id="profile-wrap">
+                <button class="profile-btn" id="profile-btn" title="View Profile">U</button>
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <div class="profile-header">
+                        <div class="profile-avatar-lg" id="pd-avatar">U</div>
+                        <div>
+                            <div class="profile-name" id="pd-name">-</div>
+                            <div class="profile-roll" id="pd-roll">-</div>
+                        </div>
+                    </div>
+                    <div class="profile-info-row"><span>Email</span><span id="pd-email">-</span></div>
+                    <div class="profile-info-row"><span>Status</span><span id="pd-status" class="badge-pending">Pending</span></div>
+                    <div id="pd-booking-details" style="display:none">
+                        <div class="profile-info-row"><span>Room</span><span id="pd-room">-</span></div>
+                        <div class="profile-info-row"><span>Floor</span><span id="pd-floor">-</span></div>
+                        <div class="profile-info-row"><span>Token</span><span id="pd-token" class="token-badge">-</span></div>
+                        <div class="booking-confirmed-msg">✅ Booking Confirmed</div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-logout" id="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Booking Status Bar -->
+        <div id="booking-info-box" class="booking-info-box" style="display:none">
+            <span class="info-icon">🎉</span>
+            <div>
+                <p id="booking-room-text"></p>
+                <p id="booking-token-text"></p>
+                <p class="confirmed-tag">Status: ✅ Confirmed</p>
+            </div>
+        </div>
+        <div id="no-booking-box" class="no-booking-box">
+            <span>📋 Select a room below to book your hostel slot.</span>
+        </div>
+
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div>
+                <h1 id="hostel-name">Loading...</h1>
+                <p id="booking-status" class="status-text"></p>
+            </div>
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Floor</label>
+                    <select id="floor-filter" class="filter-select">
+                        <option value="All">All Floors</option>
+                        <option value="Ground">Ground</option>
+                        <option value="1st">1st Floor</option>
+                        <option value="2nd">2nd Floor</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Room Type</label>
+                    <select id="type-filter" class="filter-select">
+                        <option value="All">All Types</option>
+                        <option value="AC + Attached">AC + Attached</option>
+                        <option value="Attached + Non AC">Attached + Non AC</option>
+                        <option value="Non Attached + Non AC">Non Attached + Non AC</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room Grid -->
+        <div class="room-grid" id="room-grid"></div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

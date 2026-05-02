@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - KITSW Hostel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="alert-container"></div>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="logo-circle-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/KITSW_OfficiaLogo.png" alt="KITSW" class="college-logo-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="logo-fallback" style="display:none">KW</div>
+            </div>
+            <h2>Student Registration</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username">Full Name</label>
+                    <input type="text" id="username" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="roll_number">Roll Number</label>
+                    <input type="text" id="roll_number" placeholder="e.g. B24AI089" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">College Email (@kitsw.ac.in)</label>
+                    <input type="email" id="email" placeholder="john.doe@kitsw.ac.in" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number (10 digits)</label>
+                    <input type="tel" id="mobile" placeholder="9876543210" pattern="[0-9]{10}" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password (Strong)</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                    <small class="hint-text">Must contain Uppercase, Number &amp; Special Character</small>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-auth">Register</button>
+            </form>
+            <div class="auth-footer">Already have an account? <a href="index.html">Login here</a></div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
